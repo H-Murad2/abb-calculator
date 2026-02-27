@@ -1,0 +1,621 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="src/output.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="desktop mt-30">
+      <div class="text text-center">
+        <h1 class="text-[50px] font-semibold">İndi hesablayın</h1>
+      </div>
+      <div class="menu mt-7 mb-10">
+        <ul class="flex gap-4 justify-center items-center mx-auto">
+          <li>
+            <a
+              href="#"
+              onclick="deyis('kredit')"
+              class="menu-link px-4 py-2 rounded bg-black text-white"
+            >
+              Kredit
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="deyis('depozit')"
+              class="menu-link px-4 py-2 rounded"
+            >
+              Depozit
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="deyis('avto')"
+              class="menu-link px-4 py-2 rounded"
+            >
+              Avtomobil krediti
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="deyis('ipoteka')"
+              class="menu-link px-4 py-2 rounded"
+            >
+              Ipoteka
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        id="kCalc"
+        class="kCalc flex justify-evenly items-center mx-auto pl-40"
+      >
+        <div class="l-part">
+          <div class="r1">
+            <div class="flex justify-between items-center">
+              <h1>Məbləğ</h1>
+              <h1 id="kredit-mebleg-val">300 ₼</h1>
+            </div>
+            <div class="flex justify-between items-center">
+              <input
+                type="range"
+                id="kredit-mebleg-input"
+                min="300"
+                max="50000"
+                value="300"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="flex justify-between items-center">
+              <h1>300 ₼</h1>
+              <h1>50000 ₼</h1>
+            </div>
+          </div>
+
+          <div class="r2 my-7">
+            <div class="flex justify-between items-center">
+              <h1>Müddət</h1>
+              <h1 id="kredit-muddet-val">3 ay</h1>
+            </div>
+            <div class="flex justify-between items-center">
+              <input
+                type="range"
+                id="kredit-muddet-input"
+                min="3"
+                max="59"
+                value="3"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="flex justify-between items-center">
+              <h1>3 ay</h1>
+              <h1>59 ay</h1>
+            </div>
+          </div>
+
+          <div class="r3">
+            <div class="flex justify-between items-center">
+              <h1>Faiz dərəcəsi</h1>
+              <h1 id="kredit-faiz-val">11.2 %</h1>
+            </div>
+            <div class="flex justify-between items-center">
+              <input
+                type="range"
+                id="kredit-faiz-input"
+                min="10.9"
+                max="37.7"
+                step="0.1"
+                value="11.2"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="flex justify-between items-center">
+              <h1>10.9 %</h1>
+              <h1>37.7 %</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-part mr-30">
+          <div
+            class="details w-[400px] h-[250px] bg-[#5858e2] text-center rounded-3xl"
+          >
+            <h2 class="text-white text-xl font-semibold pt-10">
+              Aylıq kredit ödənişi
+            </h2>
+            <h1
+              id="kredit-ayliq-netice"
+              class="text-white text-5xl font-semibold mt-3 mb-7"
+            >
+              107
+            </h1>
+            <button class="w-[250px] h-[40px] bg-white rounded-xl">
+              Davam et
+            </button>
+          </div>
+          <h4 class="text-center">İlkin hesablama</h4>
+        </div>
+      </div>
+
+      <div
+        id="dCalc"
+        class="dCalc flex justify-evenly items-center mx-auto pl-40"
+      >
+        <div class="l-part">
+          <div class="r1">
+            <div class="flex justify-between items-center">
+              <div class="timeBtns flex p-1 bg-[#e6e6e6] rounded-lg">
+                <button
+                  id="btn-ayliq"
+                  onclick="depozitFaizSet('ayliq')"
+                  class="w-[100px] h-[50px] bg-black text-white rounded-md"
+                >
+                  Hər ay
+                </button>
+                <button
+                  id="btn-illik"
+                  onclick="depozitFaizSet('illik')"
+                  class="w-[150px] h-[50px] rounded-md"
+                >
+                  Her il
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="r2 my-7">
+            <div class="flex justify-between items-center">
+              <h1>Məbləğ</h1>
+              <h1 id="depozit-mebleg-val">10000 ₼</h1>
+            </div>
+            <div class="flex justify-between items-center">
+              <input
+                type="range"
+                id="depozit-mebleg-input"
+                min="300"
+                max="3000000"
+                value="10000"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="flex justify-between items-center">
+              <h1>300 ₼</h1>
+              <h1>3 000 000 ₼</h1>
+            </div>
+          </div>
+
+          <div class="r3">
+            <div class="yBtns">
+              <h1 class="mb-2">Müddət (ay)</h1>
+              <div class="flex gap-2">
+                <button
+                  onclick="depozitMuddetSet(3, this)"
+                  class="d-muddet-btn px-4 py-2 bg-gray-200 rounded"
+                >
+                  3
+                </button>
+                <button
+                  onclick="depozitMuddetSet(6, this)"
+                  class="d-muddet-btn px-4 py-2 bg-gray-200 rounded"
+                >
+                  6
+                </button>
+                <button
+                  onclick="depozitMuddetSet(12, this)"
+                  class="d-muddet-btn px-4 py-2 bg-black text-white rounded"
+                >
+                  12
+                </button>
+                <button
+                  onclick="depozitMuddetSet(24, this)"
+                  class="d-muddet-btn px-4 py-2 bg-gray-200 rounded"
+                >
+                  24
+                </button>
+                <button
+                  onclick="depozitMuddetSet(36, this)"
+                  class="d-muddet-btn px-4 py-2 bg-gray-200 rounded"
+                >
+                  36
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-part mr-30">
+          <div
+            class="details w-[400px] h-[300px] pb-8 bg-[#5858e2] text-center rounded-3xl"
+          >
+            <h2 class="text-white text-xl font-semibold pt-10">Ümumi qazanc</h2>
+            <h1
+              id="depozit-umumi-qazanc"
+              class="text-white text-5xl font-semibold mt-3 mb-7"
+            >
+              0.00
+            </h1>
+            <hr class="text-white w-[80%] mx-auto mb-5 opacity-30" />
+
+            <div
+              class="flex justify-evenly items-center mx-auto text-white text-sm"
+            >
+              <h1>Hər ay ödənilən faiz</h1>
+              <h1>Faiz dərəcəsi</h1>
+            </div>
+            <div
+              class="flex justify-evenly items-center mx-auto text-white font-bold text-xl mt-2"
+            >
+              <h1 id="depozit-ayliq-qazanc">0.00</h1>
+              <h1 id="depozit-faiz-derecesi">8%</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="aCalc" class="aCalc flex flex-col gap-10">
+        <div
+          id="elektrik"
+          class="flex gap-20 justify-evenly items-center mx-auto pl-40"
+        >
+          <div class="l-part">
+            <div class="r1">
+              <div class="flex justify-between items-center mx-auto">
+                <div
+                  class="bg-[#e6e6e6] w-[250px] h-[30px] flex justify-evenly items-center"
+                >
+                  <button
+                    onclick="deyis1('elektrik')"
+                    class="bg-white w-[90px]"
+                  >
+                    Elektrik
+                  </button>
+                  <button onclick="deyis1('hibrid')">Hibrid</button>
+                  <button onclick="deyis1('diger')">Diger</button>
+                </div>
+              </div>
+            </div>
+            <div class="r2 my-7">
+              <div class="flex justify-between items-center">
+                <h1>Avtomobilin qiyməti</h1>
+                <h1 id="el-qiymet-txt">30000 ₼</h1>
+              </div>
+              <input
+                type="range"
+                id="el-qiymet-range"
+                min="300"
+                max="500000"
+                value="30000"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r3 my-7">
+              <div class="flex justify-between items-center">
+                <h1>İlkin ödəniş faizi</h1>
+                <h1 id="el-ilkin-txt">20 %</h1>
+              </div>
+              <input
+                type="range"
+                id="el-ilkin-range"
+                min="10"
+                max="90"
+                value="20"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r4">
+              <div class="flex justify-between items-center">
+                <h1>Kredit müddəti</h1>
+                <h1 id="el-muddet-txt">36 ay</h1>
+              </div>
+              <input
+                type="range"
+                id="el-muddet-range"
+                min="3"
+                max="60"
+                value="36"
+                class="w-[500px]"
+              />
+            </div>
+          </div>
+          <div class="r-part mr-30">
+            <div
+              class="details w-[500px] h-[380px] bg-[#5858e2] text-center rounded-3xl p-6 text-white"
+            >
+              <h2 class="text-xl font-semibold pt-4">Aylıq kredit ödənişi</h2>
+              <h1 id="el-ayliq-res" class="text-5xl font-semibold mt-3 mb-7">
+                0.00
+              </h1>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Kredit məbləği</h1>
+                <h1>İllik faiz</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold mb-5">
+                <h1 id="el-kredit-mebleg">0</h1>
+                <h1>10 %</h1>
+              </div>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Komissiya</h1>
+                <h1>Ümumi ödəniş</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold">
+                <h1 id="el-komissiya">0</h1>
+                <h1 id="el-cemi">0</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="hibrid"
+          class="hidden flex gap-20 justify-evenly items-center mx-auto pl-40"
+        >
+          <div class="l-part">
+            <div class="r1">
+              <div class="flex justify-between items-center mx-auto">
+                <div
+                  class="bg-[#e6e6e6] w-[250px] h-[30px] flex justify-evenly items-center"
+                >
+                  <button onclick="deyis1('elektrik')">Elektrik</button>
+                  <button onclick="deyis1('hibrid')" class="bg-white w-[90px]">
+                    Hibrid
+                  </button>
+                  <button onclick="deyis1('diger')">Diger</button>
+                </div>
+              </div>
+            </div>
+            <div class="r2 my-7">
+              <div class="flex justify-between items-center">
+                <h1>Avtomobilin qiyməti</h1>
+                <h1 id="hib-qiymet-txt">30000 ₼</h1>
+              </div>
+              <input
+                type="range"
+                id="hib-qiymet-range"
+                min="300"
+                max="500000"
+                value="30000"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r3 my-7">
+              <div class="flex justify-between items-center">
+                <h1>İlkin ödəniş faizi</h1>
+                <h1 id="hib-ilkin-txt">20 %</h1>
+              </div>
+              <input
+                type="range"
+                id="hib-ilkin-range"
+                min="10"
+                max="90"
+                value="20"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r4">
+              <div class="flex justify-between items-center">
+                <h1>Kredit müddəti</h1>
+                <h1 id="hib-muddet-txt">36 ay</h1>
+              </div>
+              <input
+                type="range"
+                id="hib-muddet-range"
+                min="3"
+                max="60"
+                value="36"
+                class="w-[500px]"
+              />
+            </div>
+          </div>
+          <div class="r-part mr-30">
+            <div
+              class="details w-[500px] h-[380px] bg-[#5858e2] text-center rounded-3xl p-6 text-white"
+            >
+              <h2 class="text-xl font-semibold pt-4">Aylıq kredit ödənişi</h2>
+              <h1 id="hib-ayliq-res" class="text-5xl font-semibold mt-3 mb-7">
+                0.00
+              </h1>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Kredit məbləği</h1>
+                <h1>İllik faiz</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold mb-5">
+                <h1 id="hib-kredit-mebleg">0</h1>
+                <h1>12 %</h1>
+              </div>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Komissiya</h1>
+                <h1>Ümumi ödəniş</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold">
+                <h1 id="hib-komissiya">0</h1>
+                <h1 id="hib-cemi">0</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="diger"
+          class="hidden flex gap-20 justify-evenly items-center mx-auto pl-40"
+        >
+          <div class="l-part">
+            <div class="r1">
+              <div class="flex justify-between items-center mx-auto">
+                <div
+                  class="bg-[#e6e6e6] w-[250px] h-[30px] flex justify-evenly items-center"
+                >
+                  <button onclick="deyis1('elektrik')">Elektrik</button>
+                  <button onclick="deyis1('hibrid')">Hibrid</button>
+                  <button onclick="deyis1('diger')" class="bg-white w-[90px]">
+                    Diger
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="r2 my-7">
+              <div class="flex justify-between items-center">
+                <h1>Avtomobilin qiyməti</h1>
+                <h1 id="dig-qiymet-txt">30000 ₼</h1>
+              </div>
+              <input
+                type="range"
+                id="dig-qiymet-range"
+                min="300"
+                max="500000"
+                value="30000"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r3 my-7">
+              <div class="flex justify-between items-center">
+                <h1>İlkin ödəniş faizi</h1>
+                <h1 id="dig-ilkin-txt">20 %</h1>
+              </div>
+              <input
+                type="range"
+                id="dig-ilkin-range"
+                min="20"
+                max="90"
+                value="20"
+                class="w-[500px]"
+              />
+            </div>
+            <div class="r4">
+              <div class="flex justify-between items-center">
+                <h1>Kredit müddəti</h1>
+                <h1 id="dig-muddet-txt">36 ay</h1>
+              </div>
+              <input
+                type="range"
+                id="dig-muddet-range"
+                min="3"
+                max="60"
+                value="36"
+                class="w-[500px]"
+              />
+            </div>
+          </div>
+          <div class="r-part mr-30">
+            <div
+              class="details w-[500px] h-[380px] bg-[#5858e2] text-center rounded-3xl p-6 text-white"
+            >
+              <h2 class="text-xl font-semibold pt-4">Aylıq kredit ödənişi</h2>
+              <h1 id="dig-ayliq-res" class="text-5xl font-semibold mt-3 mb-7">
+                0.00
+              </h1>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Kredit məbləği</h1>
+                <h1>İllik faiz</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold mb-5">
+                <h1 id="dig-kredit-mebleg">0</h1>
+                <h1>14 %</h1>
+              </div>
+              <div class="flex justify-evenly text-sm opacity-80">
+                <h1>Komissiya</h1>
+                <h1>Ümumi ödəniş</h1>
+              </div>
+              <div class="flex justify-evenly text-xl font-bold">
+                <h1 id="dig-komissiya">0</h1>
+                <h1 id="dig-cemi">0</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="iCalc"
+        class="iCalc flex justify-evenly items-center mx-auto pl-40"
+      >
+        <div class="l-part">
+          <div class="r1 my-7">
+            <div class="flex justify-between items-center">
+              <h1>Kredit məbləği</h1>
+              <h1 id="ip-m-val">30,000</h1>
+            </div>
+            <input
+              type="range"
+              id="ip-m-inp"
+              min="1000"
+              max="500000"
+              value="30000"
+              class="w-[500px]"
+              oninput="updateResults()"
+            />
+            <div class="flex justify-between items-center">
+              <h1>1,000</h1>
+              <h1>500,000 ₼</h1>
+            </div>
+          </div>
+
+          <div class="r2 my-7">
+            <div class="flex justify-between items-center">
+              <h1>Müddət (İl)</h1>
+              <h1 id="ip-a-val">10</h1>
+            </div>
+            <input
+              type="range"
+              id="ip-a-inp"
+              min="1"
+              max="25"
+              value="10"
+              class="w-[500px]"
+              oninput="updateResults()"
+            />
+            <div class="flex justify-between items-center">
+              <h1>1 il</h1>
+              <h1>25 il</h1>
+            </div>
+          </div>
+
+          <div class="r3">
+            <div class="yearsPercent">
+              <h1>İllik faiz dərəcəsi</h1>
+              <button type="button" onclick="ipFaizDeyis(4)">4%</button>
+              <button type="button" onclick="ipFaizDeyis(7)">7%</button>
+              <button type="button" onclick="ipFaizDeyis(8)">8%</button>
+              <button type="button" onclick="ipFaizDeyis(11)">11%</button>
+              <button type="button" onclick="ipFaizDeyis(12)">12%</button>
+              <button type="button" onclick="ipFaizDeyis(13)">13%</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-part mr-30">
+          <div
+            class="details w-[400px] h-[250px] bg-[#5858e2] text-center rounded-3xl"
+          >
+            <h2 class="text-white text-xl font-semibold pt-10">
+              Aylıq kredit ödənişi
+            </h2>
+            <h1
+              id="ip-res-ayliq"
+              class="text-white text-5xl font-semibold mt-3 mb-7"
+            >
+              0.00
+            </h1>
+            <hr class="text-white w-[80%] mx-auto mb-5" />
+            <div class="flex justify-evenly items-center mx-auto text-white">
+              <h1>Hər ay ödənilən faiz</h1>
+              <h1>Faiz dərəcəsi</h1>
+            </div>
+            <div
+              class="flex justify-between items-center mx-15 text-white px-10"
+            >
+              <h1 id="ip-res-faiz-ay">0</h1>
+              <h1 id="ip-res-faiz-il">4%</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="js/App.js"></script>
+    </div>
+  </body>
+</html>
